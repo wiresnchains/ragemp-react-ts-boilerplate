@@ -1,0 +1,11 @@
+@use "App";
+
+title {
+    display: none;
+}
+
+* {
+    margin: 0;
+    overflow: auto;
+    display: block;
+}

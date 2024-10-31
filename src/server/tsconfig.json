@@ -1,0 +1,7 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "types": ["../@types/types-server", "../@types/types-shared", "../../node_modules/@types/node", "../../node_modules/@ragempcommunity/types-server"]
+    },
+    "include": ["./*", "../shared/*"]
+}
