@@ -33,6 +33,7 @@ function buildCef() {
         outfile: jetpack.path(cefTargetDir, "script.js"),
         platform: "browser",
         bundle: true,
+        minifyWhitespace: true,
         loader: { ".png": "dataurl", ".jpg": "dataurl", ".svg": "dataurl", ".ttf": "dataurl" }
     });
 
