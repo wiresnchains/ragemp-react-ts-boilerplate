@@ -26,10 +26,10 @@ function buildCef() {
 
     esbuild.build({
         entryPoints: [jetpack.path(cefSrcDir, "index.tsx")],
-        outfile: jetpack.path(cefTargetDir, "index.jsx"),
+        outfile: jetpack.path(cefTargetDir, "index.js"),
         platform: "browser",
         bundle: true,
-        loader: { ".svg": "dataurl" },
+        loader: { ".png": "dataurl", ".jpg": "dataurl", ".svg": "dataurl", ".ttf": "dataurl" },
         plugins: [sassPlugin()]
     });
 
