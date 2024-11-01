@@ -5,5 +5,5 @@
         "lib": ["DOM"],
         "types": ["../@types/types-cef", "../@types/types-shared", "../../node_modules/@types/node", "../../node_modules/@types/react", "../../node_modules/@types/react-dom", "../../node_modules/@ragempcommunity/types-cef"]
     },
-    "include": ["./*", "../shared/*", "App.tsx"]
+    "include": ["./*", "../shared/*"]
 }
