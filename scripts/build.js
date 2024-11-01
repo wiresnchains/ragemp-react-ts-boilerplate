@@ -1,6 +1,6 @@
 const esbuild = require("esbuild");
 const jetpack = require("fs-jetpack");
-const { sassPlugin } = require("esbuild-sass-plugin");
+const sass = require("sass");
 
 const SOURCE_DIR = "./src";
 const TARGET_DIR = "./dist";
@@ -17,7 +17,11 @@ function buildServer() {
     });
 
     jetpack.copy(jetpack.path(serverSrcDir, "conf.json"), jetpack.path(TARGET_DIR, "conf.json"), { overwrite: true });
-    jetpack.copy(jetpack.path(serverSrcDir, ".env"), jetpack.path(TARGET_DIR, ".env"), { overwrite: true });
+
+    const envPath = jetpack.path(serverSrcDir, ".env");
+
+    if (jetpack.exists(envPath))
+        jetpack.copy(jetpack.path(serverSrcDir, ".env"), jetpack.path(TARGET_DIR, ".env"), { overwrite: true });
 }
 
 function buildCef() {
@@ -26,14 +30,14 @@ function buildCef() {
 
     esbuild.build({
         entryPoints: [jetpack.path(cefSrcDir, "index.tsx")],
-        outfile: jetpack.path(cefTargetDir, "index.js"),
+        outfile: jetpack.path(cefTargetDir, "script.js"),
         platform: "browser",
         bundle: true,
-        loader: { ".png": "dataurl", ".jpg": "dataurl", ".svg": "dataurl", ".ttf": "dataurl" },
-        plugins: [sassPlugin()]
+        loader: { ".png": "dataurl", ".jpg": "dataurl", ".svg": "dataurl", ".ttf": "dataurl" }
     });
 
-    jetpack.copy(jetpack.path(cefSrcDir, "public", "index.html"), jetpack.path(cefTargetDir, "index.html"), { overwrite: true });
+    jetpack.copy(jetpack.path(cefSrcDir, "public"), jetpack.path(cefTargetDir), { overwrite: true });
+    jetpack.write(jetpack.path(cefTargetDir, "style.css"), sass.compile(jetpack.path(cefSrcDir, "styles", "style.scss")).css);
 }
 
 function buildClient() {
