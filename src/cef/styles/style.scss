@@ -1,11 +1,39 @@
-@use "App";
-
-title {
-    display: none;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
     margin: 0;
-    overflow: auto;
+    user-select: none;
+    font-family: "Poppins";
+}
+
+input, textarea, button {
     display: block;
+    box-sizing: border-box;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 20s infinite;
+}
+
+.app {
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    * {
+        margin-bottom: 10px;
+        &:last-child { margin-bottom: 0; }
+    }
+}
+
+.highlight {
+    color: #1bb9e9;
+    font-style: italic;
 }
